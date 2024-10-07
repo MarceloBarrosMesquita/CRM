@@ -1,0 +1,415 @@
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    cursor: pointer
+}
+
+.curuchat-chat-icon {
+    height: auto !important;
+    max-height: 6.25em;
+}
+
+.message-bubble {
+    font-family: Nunito Sans, sans-serif;
+    position: relative;
+    display: flex;
+    grid-row: 1;
+    grid-area: bubble;
+    flex-flow: row wrap;
+    background: #e6f8f9;
+    color: #3d3d3d;
+    width: auto;
+    max-width: 15em;
+    padding: 1.2em 2em 1.2em 1.2em;
+    border-radius: .8125em .8125em .125em .8125em;
+    box-shadow: .0625em .25em .5625em rgb(0 0 0/10%);
+    z-index: 980;
+    animation: toggle-bubble .5s ease-out;
+    line-height: 1.5em;
+    transform-origin: 100% 100%
+}
+
+.message-bubble::after {
+    bottom: 0;
+    content: '';
+    position: absolute;
+    left: calc(100% - 0.9375em);
+    width: 0;
+    border: .875em solid transparent;
+    border-bottom-color: #e6f8f9;
+    border-radius: .28125em
+}
+
+.message-bubble::before {
+    bottom: 0;
+    content: '';
+    position: absolute;
+    left: calc(100% - 0.75em);
+    width: 0;
+    border: .9375em solid transparent;
+    border-bottom-color: rgb(0 0 0/5%);
+    filter: blur(0.125em);
+    border-radius: .28125em
+}
+
+.message-bubble .close-button {
+    position: absolute;
+    right: .625em;
+    top: .9375em;
+    width: .7em;
+    height: .7em;
+    opacity: .3
+}
+
+.message-bubble .close-button:hover {
+    opacity: 1;
+    cursor: pointer
+}
+
+.message-bubble .close-button:before, .message-bubble .close-button:after {
+    position: absolute;
+    content: ' ';
+    height: .8em;
+    width: .125em;
+    background-color: #333
+}
+
+.message-bubble .close-button:before {
+    transform: rotate(45deg)
+}
+
+.message-bubble .close-button:after {
+    transform: rotate(-45deg)
+}
+
+@keyframes toggle-bubble {
+    from {
+        transform: scale(.1)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+#curuchat-chat-container {
+    display: grid;
+    grid-template-areas:'bubble icon' 'messageOption icon';
+    align-items: center;
+    bottom: 2.5em;
+    justify-items: right;
+    column-gap: .9375em;
+    width: auto !important;
+    height: auto !important;
+    position: fixed !important;
+    z-index: 1000000
+}
+
+@media only screen and (min-width: 385px) {
+    #curuchat-chat-container {
+        right: 1.5%
+    }
+}
+
+#curuchat-chat-container > #curuchat-chat-open-iframe {
+    position: static;
+    grid-area: icon;
+    background-size: contain;
+    box-shadow: none !important;
+    width: auto !important;
+    height: auto !important
+}
+
+#curuchat-chat-icon {
+    position: static;
+    width: auto !important;
+    height: auto !important;
+    max-width: 3.75em !important;
+    border-radius: 50%;
+}
+
+#curuchat-chat-close-icon {
+    height: auto !important;
+    background-color: #2cc3d5;
+    border-radius: 50%;
+}
+
+#curuchat-chat-icon:hover {
+    transform: translateY(-2px)
+}
+
+.option-message {
+    grid-area: messageOption;
+    font-family: Nunito Sans, sans-serif;
+    margin-top: .3125em;
+    width: auto;
+    z-index: 980;
+    font-size: auto;
+    overflow-x: hidden
+}
+
+.option-message li {
+    list-style: none;
+    margin-top: .3125em;
+    text-align: right;
+    animation: Appearing2 2s ease-out
+}
+
+.option-message li:nth-child(2n+1) {
+    animation: Appearing 1s ease-out
+}
+
+@keyframes Appearing {
+    from {
+        transform: translateX(100%)
+    }
+    to {
+        transform: translateX(0)
+    }
+}
+
+@keyframes Appearing2 {
+    from {
+        transform: translateX(300%)
+    }
+    to {
+        transform: translateX(0)
+    }
+}
+
+.option-message li a {
+    display: inline-block;
+    padding: .3125em .9375em;
+    background-color: #4786f1;
+    margin-top: .3125em;
+    border-radius: .25em;
+    color: #fff !important;
+    text-decoration: none;
+    transition: .2s ease-in;
+    box-shadow: .0625em .125em .375em rgb(0 0 0/10%);
+    font-weight: 400
+}
+
+.option-message li a:hover {
+    transform: translateY(-2px);
+    box-shadow: .0625em .25em .375em rgb(0 0 0/12%);
+    font-weight: 500
+}
+
+#curuchat-chat-container #curuchat-chat-open-iframe img, #curuchat-chat-container #curuchat-chat-open-iframe svg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#curuchat-chat-open-iframe {
+    background-color: transparent !important
+}
+
+#curuchat-chat-container #curuchat-chat-open-iframe {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    position: fixed;
+    width: 4%;
+    max-width: 60px;
+    min-width: 48px;
+    max-height: 60px;
+    min-height: 48px;
+    right: 35px;
+    bottom: 35px;
+    transition: transform 200ms, opacity 500ms, visibility 500ms;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 10%), 0 2px 32px rgb(0 0 0 / 10%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#curuchat-chat-notifications {
+    background-color: #F76556;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 21px;
+    font-size: 12px;
+    width: 21px;
+    height: 21px;
+    position: fixed;
+    text-align: center;
+    bottom: 65px;
+    right: 30px;
+    opacity: 0;
+}
+
+#curuchat-chat-icon {
+    position: static;
+    width: auto !important;
+    height: auto !important;
+    max-width: 3.75em !important;
+    border-radius: 0% !important;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 420px) {
+    .chatParent {
+        overflow-y: hidden !important;
+        position: static !important;
+        height: 0px;
+        width: 0px;
+    }
+}
+
+#curuchat-chat-notifications {
+    background-color: #F76556;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 21px;
+    font-size: 12px;
+    width: 21px;
+    height: 21px;
+    position: fixed;
+    text-align: center;
+    bottom: 65px;
+    right: 30px;
+    opacity: 0;
+}
+
+#curuchat-chat-container {
+    position: fixed;
+    bottom: 40px;
+    right: 80px;
+    z-index: 1000000;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 420px) {
+    #curuchat-chat-container {
+        bottom: 0px;
+        right: 0px;
+        position: absolute;
+        height: 100%;
+    }
+}
+
+#curuchat-chat-container #curuchat-chat-iframe {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    opacity: 0;
+    transition: opacity 500ms, transform 500ms, visibility 500ms, height 0s 500ms;
+    transform: translateY(10%);
+    z-index: 1;
+    height: 0;
+    width: 400px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background: #faf9f8;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 420px) {
+    #curuchat-chat-container #curuchat-chat-iframe {
+        left: 0;
+        bottom: 0px !important;
+        max-height: 100vh !important;
+        width: 100%;
+        position: absolute;
+        box-shadow: none;
+        right: 0;
+    }
+
+    #curuchat-chat-welcome-container .icon-close {
+        display: flex;
+    }
+}
+
+#curuchat-chat-container #curuchat-chat-iframe.curuchat-chat-iframe-opened {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition: opacity 500ms 10ms, transform 500ms 10ms, visibility 500ms 10ms, height 0ms;
+    height: 610px;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 420px) {
+    #curuchat-chat-container #curuchat-chat-iframe.curuchat-chat-iframe-opened {
+        height: 100%;
+    }
+}
+
+#curuchat-chat-container #curuchat-chat-open-iframe {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    position: fixed;
+    width: 4%;
+    max-width: 60px;
+    min-width: 48px;
+    max-height: 60px;
+    min-height: 48px;
+    right: 25px;
+    bottom: 10px;
+    transition: transform 200ms, opacity 500ms, visibility 500ms;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), 0 2px 32px rgba(0, 0, 0, 0.1);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 420px) {
+    #curuchat-chat-container #curuchat-chat-open-iframe.opened {
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+}
+
+#curuchat-chat-container #curuchat-chat-open-iframe:active {
+    transform: scale(0.9);
+}
+
+#curuchat-chat-container #curuchat-chat-open-iframe img, #curuchat-chat-container #curuchat-chat-open-iframe svg {
+    width: 50px !important;
+    aspect-ratio: 1;
+    height: auto;
+    border-radius: 50% !important;
+
+    /*width: 100%;
+    height: 100%;*/
+}
+
+#curuchat-chat-open-iframe {
+    display: none;
+}
+
+#curuchat-chat-iframe {
+    width: 100%;
+    height: 100%;
+}
+
+#curuchat-chat-iframe {
+    position: fixed;
+    bottom: 90px;
+    right: 38px;
+    opacity: 0;
+    transition: opacity 500ms, transform 500ms, visibility 500ms, height 0s 500ms;
+    transform: translateY(10%);
+    z-index: 1;
+    height: 0;
+    width: 400px;
+    box-shadow: 0 0 20px 1px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+    background: transparent;
+}
+
+#curuchat-chat-iframe.curuchat-chat-iframe-opened {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition: opacity 500ms 10ms, transform 500ms 10ms, visibility 500ms 10ms, height 0ms;
+    height: 610px;
+}

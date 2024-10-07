@@ -1,0 +1,344 @@
+{% extends "theme/base.twig" %}
+{% set area = 'cpainel'%}
+{% set type = 'conta'%}
+{% block CSSfiles %}
+    {{ parent() }}
+    <!--suppress SpellCheckingInspection, SpellCheckingInspection, HtmlUnknownTarget -->
+    <link rel="stylesheet" href="/assets/plugins/multiselect/multiselect.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/datatables/datatables.responsive.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/css/local/conta.css?v={{ config.versionId }}">
+{% endblock %}
+
+{% block JSfiles %}
+    {{ parent() }}
+    <script>
+        let parameters = {{ parameters|json_encode|raw }};
+    </script>
+
+    <script src="/assets/plugins/datatables/datatables.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.bootstrap.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.html5.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.jszip.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.responsive.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/daterangepicker/daterangepicker.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/multiselect/multiselect.js?v={{ config.versionId }}"></script>
+    <script src="/assets/js/local/conta.js?v={{ config.versionId }}"></script>
+{% endblock %}
+{% block content %}
+<div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <div class="container-fluid px-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="mb-0 title-after-header py-2">Contas >> Formulário</h1>
+                    </div>
+                    <div class="col-auto d-flex align-items-center my-2 my-sm-0">
+                        <a href="/cpainel/conta/list" class="btn btn-lg btn-warning btn-xs">
+                            <span>Listar Contas</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <form id="contaForm" method="POST" novalidate="novalidate" autocomplete="off" class="w-100">
+             {% if entity.id %}
+                    <input type="hidden" name="id" id="id" value="{{ entity.id }}">
+                {% endif %}
+                <div class="row g-0">
+                    <div class="col-12 ps-2 pe-1">
+                       <div class="card basic widthfull  rounded-12 shadow-dark-80 border border-gray-50 mb-2 occurence-init">
+                            <div class="card-body px-3 py-1 d-flex flex-column">
+                                <h4>Dados Conta </h4>
+                                <div class="row pb-1">
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_conta">Tipo Conta
+                                            <star>*</star>
+                                            </label>
+                                            
+                                            <select name="fl_tipo_conta" class="form-select form-select-xl multiselect" id="fl_tipo_conta" tabindex="3">
+                                                <optgroup label="Tipo Conta" id="1">
+                                                    <option value="1" {% if entity.fl_tipo_conta == 1 %} selected {% endif %}>Principal</option>
+                                                    <option value="2" {% if entity.fl_tipo_conta == 2 %} selected {% endif %}>Vinculado</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Tipo Pessoa
+                                            <star>*</star>
+                                            </label>
+                                            
+                                            <select name="fl_tipo_pessoa" class="form-select form-select-xl multiselect" id="fl_tipo_pessoa" tabindex="3">
+                                                <optgroup label="Tipo Pessoa" id="1">
+                                                    <option value="1" {% if entity.fl_tipo_conta == 1 %} selected {% endif %}>CNPJ</option>
+                                                    <option value="2" {% if entity.fl_tipo_conta == 2 %} selected {% endif %}>CPF</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg cpf_cnpj" for="fl_tipo_pessoa">CNPJ
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-cnpj" name="cpf_cnpj"
+                                                id="cpf_cnpj" placeholder="CPF/CNPJ" tabindex="4"
+                                                value="{{ entity.cpf_cnpj }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Razão Social
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="razao_social"
+                                                id="razao_social" placeholder="Razão Social" tabindex="4"
+                                                value="{{ entity.razao_social }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Identificação Conta
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="identificacao_conta"
+                                                id="identificacao_conta" placeholder="Identificação Conta" tabindex="4"
+                                                value="{{ entity.identificacao_conta }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="card basic widthfull  rounded-12 shadow-dark-80 border border-gray-50 mb-2 occurence-init">
+                            <div class="card-body px-3 py-1 d-flex flex-column">
+                                <h4>Endereço / Contatos </h4>
+                                <div class="row pb-1">
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Cep
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-cep" name="cep"
+                                                id="cep" placeholder="cep" tabindex="4"
+                                                value="{{ entity.cep }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-1">
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Logradouro
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="endereco"
+                                                id="endereco" placeholder="endereco" tabindex="4"
+                                                value="{{ entity.endereco }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Número
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="numero"
+                                                id="numero" placeholder="numero" tabindex="4"
+                                                value="{{ entity.numero }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Complemento
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="complemento"
+                                                id="complemento" placeholder="complemento" tabindex="4"
+                                                value="{{ entity.complemento }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Bairro
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="bairro"
+                                                id="bairro" placeholder="bairro" tabindex="4"
+                                                value="{{ entity.bairro }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Cidade
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="cidade"
+                                                id="cidade" placeholder="cidade" tabindex="4"
+                                                value="{{ entity.cidade }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Estado
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="estado"
+                                                id="estado" placeholder="estado" tabindex="4"
+                                                value="{{ entity.estado }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-1">
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Telefone
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-phone" name="telefone"
+                                                id="telefone" placeholder="(xx) xxxxx-xxxx" tabindex="4"
+                                                value="{{ entity.telefone }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Celular
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-phone" name="celular"
+                                                id="celular" placeholder="(xx) xxxxx-xxxx" tabindex="4"
+                                                value="{{ entity.celular }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Email
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl " name="email"
+                                                id="email" placeholder="email" tabindex="4"
+                                                value="{{ entity.email }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="card basic widthfull  rounded-12 shadow-dark-80 border border-gray-50 mb-2 occurence-init">
+                            <div class="card-body px-3 py-1 d-flex flex-column">
+                                <h4>Faturamento </h4>
+                                <div class="row pb-1">
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_conta">Plano
+                                            <star>*</star>
+                                            </label>
+                                            
+                                            <select name="id_plano" class="form-select form-select-xl multiselect" id="id_plano" tabindex="3">
+                                                <optgroup label="Plano" id="1">
+                                                    <option value="">Selecione</option>
+                                                    {% for value in planos %}
+                                                        <option {% if entity.id_plano == value.id %} selected="selected" {% endif %} value="{{ value.id }}" >{{ value.descricao }}</option>
+                                                    {% endfor %}
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Valor
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl" name="valor_setup"
+                                                id="valor_setup" placeholder="Valor $$" tabindex="4"
+                                                value="{{ entity.valor_setup }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Parcelas
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <select name="parcelas_setup" class="form-select form-select-xl multiselect" id="parcelas_setup" tabindex="3">
+                                                <optgroup label="Parcelas" id="1">
+                                                    <option value="">Selecione</option>
+                                                    <option value="1" {% if entity.parcelas_setup == 1 %} selected {% endif %}>À vista</option>
+                                                    <option value="2" {% if entity.parcelas_setup == 2 %} selected {% endif %}>2 parcelas</option>
+                                                    <option value="3" {% if entity.parcelas_setup == 3 %} selected {% endif %}>3 parcelas</option>
+                                                    <option value="4" {% if entity.parcelas_setup == 4 %} selected {% endif %}>4 parcelas</option>
+                                                    <option value="5" {% if entity.parcelas_setup == 5 %} selected {% endif %}>5 parcelas</option>
+                                                    <option value="6" {% if entity.parcelas_setup == 6 %} selected {% endif %}>6 parcelas</option>
+                                                    <option value="7" {% if entity.parcelas_setup == 7 %} selected {% endif %}>7 parcelas</option>
+                                                    <option value="8" {% if entity.parcelas_setup == 8 %} selected {% endif %}>8 parcelas</option>
+                                                    <option value="9" {% if entity.parcelas_setup == 9 %} selected {% endif %}>9 parcelas</option>
+                                                    <option value="10" {% if entity.parcelas_setup == 10 %} selected {% endif %}>10 parcelas</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Dia Faturamento
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-numbers-2" maxlength="31" name="dia_fatuamento"
+                                                id="dia_fatuamento" placeholder="Dia Faturamento" tabindex="4"
+                                                value="{{ entity.dia_faturamento }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Data início
+                                                <star>*</star>
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-date" name="data_inicio_sistema"
+                                                id="data_inicio_sistema" placeholder="Data início" tabindex="4"
+                                                value="{{ entity.data_inicio_sistema }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xxl-4">
+                                        <div class=" mb-md-2">
+                                            <label class="form-label form-label-lg" for="fl_tipo_pessoa">Data Cancelamento
+                                            </label>
+                                            
+                                            <input type="text" class="form-control form-control-xl mask-date" name="data_cancelamento"
+                                                id="data_cancelamento" placeholder="Data cancelamento" tabindex="4"
+                                                value="{{ entity.data_cancelamento }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg mt-auto w-100 btn-persist">
+                                    Salvar conta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

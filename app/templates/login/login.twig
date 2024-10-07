@@ -1,0 +1,72 @@
+{% extends "theme/base.login.twig" %}
+{% set area = 'oauth' %}
+
+{% block title %}
+    Autenticação
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block CSSfiles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/assets/css/local/authentication.css?v={{ config.VERSION_ID }}">
+    <link rel="stylesheet" href="/assets/css/local/nova_senha.css?v={{ config.VERSION_ID }}">
+{% endblock %}
+
+{% block JSfiles %}
+    {{ parent() }}
+    <script src="/assets/js/global/bestflow.js?v={{ config.VERSION_ID }}"></script>
+    <script src="/assets/js/global/oauth.js?v={{ config.VERSION_ID }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="form-content">
+        <div class="form-items">
+            <div class="px-3 py-4 p-md-5 p-xxl-5 mx-xxl-4">
+                <div class="login-form py-2 py-md-0 mx-auto mx-lg-0">
+
+                    <div class="d-block">
+                        <h2 class="h2 mb-3 d-inline-block">Autenticação</h2>
+                    </div>
+                    <div class="d-block badge-environment-box">
+                        <div data-html="true" data-toggle="tooltip" data-placement="top"
+                                title="Ambiente produtivo"
+                                data-bs-original-title="Ambiente produtivo">
+                            <span class="badge bg-success badge-environment text-white float-end">produção</span>
+                        </div>
+                    </div>
+                    <div class="d-block">
+                        Versão dev.: {{ config.version }}
+                    </div>
+
+                    <div class="position-relative">
+                        <hr class="bg-gray-200 border-gray-200 opacity-100">
+                    </div>
+                    <form class="pt-2" id="authForm" method="POST" novalidate="novalidate" autocomplete="off">
+                        <div class="mb-4 pb-md-2">
+                            <label class="form-label form-label-lg">Login</label>
+                            <div class="input-group-md">
+                                <input type="text" class="form-control form-control-sm" placeholder="Login"
+                                       name="login">
+                            </div>
+                        </div>
+                        <div class="mb-4 pb-md-2">
+                            <label class="form-label form-label-lg">Senha</label>
+                            <div class="input-group-md">
+                                <input type="password" class="form-control form-control-sm" id="password"
+                                       placeholder="Senha" name="password">
+                                
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-md btn-primary btn_login">Entrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% include('login/modal/nova_senha.twig') %}
+{% endblock %}

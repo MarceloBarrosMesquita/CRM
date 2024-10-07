@@ -1,0 +1,172 @@
+{% extends "theme/base.twig" %}
+
+{% block CSSfiles %}
+    {{ parent() }}
+    <!--suppress SpellCheckingInspection, SpellCheckingInspection, HtmlUnknownTarget -->
+    <link rel="stylesheet" href="/assets/plugins/multiselect/multiselect.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/datatables/datatables.responsive.css?v={{ config.versionId }}">
+{% endblock %}
+
+{% block JSfiles %}
+    {{ parent() }}
+    <script>
+        let parameters = {{ parameters|json_encode|raw }};
+    </script>
+
+    <script src="/assets/plugins/datatables/datatables.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.bootstrap.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.html5.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.jszip.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.responsive.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/daterangepicker/daterangepicker.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/multiselect/multiselect.js?v={{ config.versionId }}"></script>
+    <script src="/assets/js/local/teste.js?v={{ config.versionId }}"></script>
+{% endblock %}
+{% block content %}
+<div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <div class="container-fluid px-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="mb-0 title-after-header py-2">
+                            CRM
+                            >>
+                        </h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <div class="card widthfull  shadow-dark-80 border border-gray-50 mb-3 mb-xl-5">
+                <div class="card-body p-3 d-flex flex-column">
+                    <div class="row w-100">
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 occurrences">
+                            {% if type == 'history' %}
+                                <h4>Histórico do que você interagiou</h4>
+                            {% elseif type == 'view-all' %}
+                                <h4>Todas ocorrências</h4>
+                            {% else %}
+                                <h4>Minhas tarefas</h4>
+                            {% endif %}
+
+                            <div class="filters pb-4">
+                                <div class="row" style="row-gap: 15px;">
+                                    <div class="col-4">
+                                        <label class="form-label form-label-lg" for="id_brand">Filas
+                                            <star>*</star>
+                                        </label>
+                                        <select name="id_brand" class="form-select form-select-xl multiselect"
+                                                id="id_brand" multiple>
+                                            <optgroup label="Marcas" id="1">
+                                                {% for brand in brands %}
+                                                    <option value="{{ brand.id_brand }}"
+                                                            selected="selected">{{ brand.title|title }}</option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label form-label-lg" for="id_queue">Filas
+                                            <star>*</star>
+                                        </label>
+                                        <select name="id_queue" class="form-select form-select-xl multiselect"
+                                                id="id_queue" multiple>
+                                            <optgroup label="Filas" id="1">
+                                                {% for queue in queues %}
+                                                    {% set disabled =  queue.id_queue not in queuesAllowed and privilege != 'view-all' ? 'disabled="disabled"' : '' %}
+                                                    {% set selected = queue.id_queue in queuesAllowed or privilege == 'view-all' ? 'selected="selected"' : '' %}
+                                                    <option value="{{ queue.id_queue }}"
+                                                            {{ selected }}{{ disabled }}>{{ queue.title|title }}</option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label form-label-lg" for="id_status">Status
+                                            <star>*</star>
+                                        </label>
+                                        <select name="id_status" class="form-select form-select-xl multiselect"
+                                                id="id_status" multiple>
+                                            <optgroup label="Status" id="1">
+                                                {% for status in statuses %}
+                                                    <option value="{{ status.id_occurrence_status }}"
+                                                            selected="selected">{{ status.title|title }}</option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label form-label-lg" for="id_channel">Canais de origem
+                                            <star>*</star>
+                                        </label>
+                                        <select name="id_channel" class="form-select form-select-xl multiselect"
+                                                id="id_channel" multiple>
+                                            <optgroup label="Canais" id="1">
+                                                {% for channel in channels %}
+                                                    <option value="{{ channel.id_channel }}"
+                                                            selected="selected">{{ channel.title|title }}</option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label form-label-lg" for="filter_date">Filtro por data
+                                            <star>*</star>
+                                        </label>
+                                        <div class="input-group ">
+                                                <span class="input-group-text filter_date" id="basic-addon1">
+                                                    <i class="fa fa-times"> </i>
+                                                </span>
+                                            <input type="text" name="filter_date" id="filter_date"
+                                                   class="form-control mask-date-hour" placeholder="Filtro por Data"
+                                                   readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="form-label form-label-lg" for="filter_date">Processar filtro
+                                            <star>*</star>
+                                        </label>
+                                        <div class="d-block">
+                                            <button class="btn btn-primary btn-xs btn-filter-occurrences widthfull">
+                                                Processar filtro
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <table id="datatableOccurrences"
+                                   class="table nowrap table-no-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Protocolo</th>
+                                    <th class="text-center">Fila</th>
+                                    <th class="text-center">Status</th>
+                                    <th>Tabulação</th>
+                                    <th alt="Canal de atendimento" title="Canal de Atendimento">Canal de Atend.</th>
+                                    <th>Loja</th>
+                                    <th class="text-center">Criado em</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

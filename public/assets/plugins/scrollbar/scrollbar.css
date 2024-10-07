@@ -1,0 +1,30 @@
+::-webkit-scrollbar {
+    width: .6em !important;
+    height: .6em !important
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cccaca;
+    border-radius: 10px !important;
+    -webkit-border-radius: 10px !important;
+    animation-name: ease-in;
+    animation-duration: 2s
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bdbbbb
+}
+
+::-webkit-scrollbar-track {
+    background: #eae8e8;
+    border-radius: 10px !important;
+    -webkit-border-radius: 10px !important
+}
+
+::-webkit-scrollbar-corner {
+    background: purple
+}
+
+::-webkit-resizer {
+    background: orange
+}

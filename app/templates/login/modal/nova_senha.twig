@@ -1,0 +1,23 @@
+<div aria-labelledby="modal-set-ramalLabel" class="modal fade" id="modal_nova_senha" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="formAlterarSenha" method="POST" onsubmit="return false;">
+                    <input type="hidden" id="ds_login_nova_senha" name="ds_login_nova_senha">
+                    <span>Olá <span class="colaborador-bold">colaborador(a)</span>, configure sua senha!</span>
+
+                    <div class='config_password'>
+                        <label for='password1'>Nova Senha</label>
+                        <input type="password" id="password1" placeholder="Nova Senha" name="password1">
+                    </div>
+                    <div class='config_password'>
+                        <label for='password2'>Confirmar Senha</label>
+                        <input type="password" id="password2" placeholder="Confirmar Senha" name="password2">
+                    </div>
+                    
+                    <button type='button' id='btn_upd_password'>Alterar Senha</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

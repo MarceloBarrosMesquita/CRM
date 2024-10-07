@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/assets/img/favicon.png" rel="icon" type="image/png">
+    <title>Acesso Restrito</title>
+    <link href="/assets/plugins/404/bootstrap.css" rel="stylesheet"/>
+    <style>
+        /* Adiciona um estilo global */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Define a imagem como fundo e centraliza o conteúdo */
+        .repair {
+            background: url('/assets/img/acesso-restrito.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 4em;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        header h2 {
+            font-size: 1.5em;
+            margin: 10px 0 30px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer li {
+            display: inline;
+        }
+
+        footer .example_c {
+            color: black;
+            text-decoration: none;
+            padding: 15px 30px;
+            border: 2px solid black;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        footer .example_c:hover {
+            background:white;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="repair">
+        <div class="content">
+            <header>
+                <h1>Acesso Restrito!</h1>
+                <h2>O conteúdo dessa página é restrito para o perfil do seu usuário.</h2>
+            </header>
+            <footer>
+                <ul>
+                    <li><a class="example_c" href="/menu/principal" target="_self">VOLTAR PARA O INÍCIO</a></li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

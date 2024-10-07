@@ -1,0 +1,43 @@
+.privileges {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    grid-row-gap: 10px;
+}
+
+.privileges-container > div {
+    background: #f6f6f6;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 5px;
+    padding: 20px;
+    height: 100%;
+}
+
+.box-queues .form-check-input:checked {
+    background-color: #088B00;
+    border-color: #088B00;
+}
+
+.label-area {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+.box-queues {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    background: #F6F6F6;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.box-queues h1 {
+    font-size: 20px !important;
+}
+
+.box-queues h5 {
+    font-size: 14px !important;
+    color: darkgrey;
+    font-weight: normal;
+    line-height: 18px;
+    margin: 12px 0 10px 0 !important;
+
+}

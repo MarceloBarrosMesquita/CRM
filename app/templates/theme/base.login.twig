@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="/assets/img/square.png"/>
+
+        <!-- FONTS  -->
+        <link rel="stylesheet" href="/assets/fonts/Poppins/poppins.css">
+
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <title>Autenticação - Portal Colaborador</title>
+
+        {% block CSSfiles %}
+            <link rel="stylesheet" href="/assets/plugins/bootstrap/bootstrap.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/fonts/fontawesome-5-pro/css/all.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/plugins/iofrm/iofrm-style.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/plugins/iofrm/iofrm-theme25.css?v={{ config.VERSION_ID }}">
+            <link rel='stylesheet' href='/assets/plugins/animated/animated.css?v={{ config.VERSION_ID }}'>
+            <link rel='stylesheet' href='/assets/plugins/toastr/toastr.css?v={{ config.VERSION_ID }}'>
+            <link rel='stylesheet' href='/assets/plugins/sweetalert/sweetalert.css?v={{ config.VERSION_ID }}'>
+            <link rel='stylesheet' href='/assets/plugins/loading/loading.css?v={{ config.VERSION_ID }}'>
+            <link rel="stylesheet" href="/assets/plugins/scrollbar/scrollbar.css?v={{ config.VERSION_ID }}">
+        {% endblock %}
+    {% endblock %}
+</head>
+
+<div class="form-body">
+    <div class="website-logo">
+        <a href="index.html">
+            <div class="logo">
+                <img class="logo-size" src="/assets/img/logo/combo.png" alt="" width="150">
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <div class="img-holder" style="flex-shrink: unset !important;">
+            <div class="bg"></div>
+            <div class="info-holder">
+                <img class="md-size" src="/assets/img/logo-empresa-white.png" alt="">
+            </div>
+        </div>
+        <div class="form-holder" style="flex-shrink: unset !important;">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block JSfiles %}
+    <script>var config = {{ config|json_encode|raw }};</script>
+    <script src="/assets/plugins/jquery/jquery.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/plugins/bootstrap/bootstrap.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/plugins/jquery-debounce/debounce.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/plugins/jquery-validate/validate.js?v={{ config.VERSION_ID }}"></script>
+    <script src="/assets/plugins/jquery-validate/methods.js?v={{ config.VERSION_ID }}"></script>
+    <script src="/assets/plugins/toastr/toastr.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/plugins/cookie/cookie.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/plugins/sweetalert/sweetalert.js?v={{ config.VERSION_ID }}"></script>
+
+    <script src="/assets/js/global/utils.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/js/global/company.js?v={{ config.VERSION_ID }}"></script>
+{% endblock %}
+</body>
+</html>

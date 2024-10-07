@@ -1,0 +1,142 @@
+{% extends "theme/base.twig" %}
+{% set area = 'cpainel'%}
+{% set type = 'perfil'%}
+{% block CSSfiles %}
+    {{ parent() }}
+    <!--suppress SpellCheckingInspection, SpellCheckingInspection, HtmlUnknownTarget -->
+    <link rel="stylesheet" href="/assets/plugins/multiselect/multiselect.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/datatables/datatables.responsive.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/css/local/perfil.css?v={{ config.versionId }}">
+{% endblock %}
+
+{% block JSfiles %}
+    {{ parent() }}
+    <script>
+        let parameters = {{ parameters|json_encode|raw }};
+    </script>
+
+    <script src="/assets/plugins/datatables/datatables.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.bootstrap.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.html5.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.jszip.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.responsive.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/daterangepicker/daterangepicker.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/multiselect/multiselect.js?v={{ config.versionId }}"></script>
+    <script src="/assets/js/local/perfil.js?v={{ config.versionId }}"></script>
+{% endblock %}
+{% block content %}
+<div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <div class="container-fluid px-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="mb-0 title-after-header py-2">Perfis de Acesso >> Formulário</h1>
+                    </div>
+                    <div class="col-auto d-flex align-items-center my-2 my-sm-0">
+                        <a href="/cpainel/perfil/list" class="btn btn-lg btn-warning btn-xs">
+                            <span>Listar Perfis</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <form id="perfilForm" method="POST" novalidate="novalidate" autocomplete="off" class="w-100">
+
+                {% if entity.id %}
+                    <input type="hidden" name="id" id="id" value="{{ entity.id }}">
+                {% endif %}
+                <div class="row">
+                    <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+                        <div class="card widthfull  shadow-dark-80 border border-gray-50 mb-3 mb-xl-5">
+                            <div class="card-body p-3 d-flex flex-column">
+                                <h4 class="title-section-settings">Informações básicas</h4>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-md-2 pb-4">
+                                            <label class="form-label form-label-lg" for="descricao">Nome Perfil
+                                                <star>*</star>
+                                            </label>
+                                            <input type="text" class="form-control form-control-xl" name="descricao"
+                                                   id="descricao" placeholder="Perfil" tabindex="1"
+                                                   value="{{ entity.descricao }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-12">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            {% for value in modulos %}
+                                                <div class="col-4 col-xl-4 col-xxl-4 mb-4 privileges-container align-items-stretch">
+                                                    <div class="pb-3 pt-3">
+                                                        <label class="form-label form-label-lg label-area">{{ value.descricao }}</label>
+                                                        <div class="privileges">
+                                                            <div class="container-company-input">
+                                                                <input class="form-check-input"
+                                                                    name="perfil[{{ value.slug }}][]"
+                                                                    id="perfil_ic_insert_{{ value.slug }}"
+                                                                    type="checkbox" value="ic_insert_{{ value.slug }}"
+                                                                    {{ (entity.permissoes[value.slug] is defined and 'ic_insert_' ~ value.slug in entity.permissoes[value.slug]) ? 'checked="checked"' : '' }}>
+                                                                <label class="form-check-label"
+                                                                    for="perfil_ic_insert_{{ value.slug }}">
+                                                                    Criar/Editar
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="privileges">
+                                                            <div class="container-company-input">
+                                                                <input class="form-check-input"
+                                                                    name="perfil[{{ value.slug }}][]"
+                                                                    id="perfil_ic_listar_{{ value.slug }}"
+                                                                    type="checkbox" value="ic_listar_{{ value.slug }}"
+                                                                    {{ (entity.permissoes[value.slug] is defined and 'ic_listar_' ~ value.slug in entity.permissoes[value.slug]) ? 'checked="checked"' : '' }}>
+                                                                <label class="form-check-label"
+                                                                    for="perfil_ic_listar_{{ value.slug }}">
+                                                                    Listar
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="privileges">
+                                                            <div class="container-company-input">
+                                                                <input class="form-check-input"
+                                                                    name="perfil[{{ value.slug }}][]"
+                                                                    id="perfil_ic_delete_{{ value.slug }}"
+                                                                    type="checkbox" value="ic_delete_{{ value.slug }}"
+                                                                    {{ (entity.permissoes[value.slug] is defined and 'ic_delete_' ~ value.slug in entity.permissoes[value.slug]) ? 'checked="checked"' : '' }}>
+                                                                <label class="form-check-label"
+                                                                    for="perfil_ic_delete_{{ value.slug }}">
+                                                                    Excluir
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <button type="button" class="btn btn-primary btn-lg mt-auto btn-persist">
+                                        Atualizar Dados
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

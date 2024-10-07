@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    {% set JSversion = 18 %}
+    {% block head %}
+        <meta charset="utf-8"/>
+        <link href="/assets/img/square.png" rel="icon" type="image/ico">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>{% block title %}{% endblock %} | {{ settingsGlobal.title }}</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta name="MobileOptimized" content="375">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="apple-mobile-weAdb-app-status-bar-style" content="black">
+
+        {% block CSSfiles %}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+           <link rel="preload" href="/assets/img/logo/logo-white.png" as="image">
+            <link rel="stylesheet" href="/assets/plugins/preloader/preloader.css?v={{ config.versionId }}">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="/assets/fonts/FontAwesome6/all.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/fonts/fontawesome-5-pro/css/all.css?v={{ config.VERSION_ID }}">
+
+            <!-- GLOBAL CSS -->
+            <link rel="stylesheet" href="/assets/plugins/bootstrap/bootstrap.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/plugins/muze-template/app.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/plugins/datatables/datatables.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/plugins/jquery-fancybox/fancybox.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/plugins/animated/animated.css?v={{ config.versionId }}">
+            <link rel='stylesheet' href='/assets/plugins/toastr/toastr.css?v={{ config.versionId }}'>
+            <link rel='stylesheet' href='/assets/plugins/sweetalert/sweetalert.css?v={{ config.versionId }}'>
+            <link rel="stylesheet" href="/assets/plugins/jquery-confirm/jquery-confirm.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/plugins/loading/loading.css?v={{ config.versionId }}">
+            <link rel="stylesheet" href="/assets/plugins/scrollbar/scrollbar.css?v={{ config.versionId }}">
+            
+            <link href='{{ base_url() }}/assets/css/local/menu.css' rel='stylesheet' type='text/css'>
+
+        {% endblock %}
+    {% endblock %}
+</head>
+<body>
+    {% include 'theme/menu.twig' %}
+    {% block breadcrumb %}{% endblock %}
+    {% block content %}{% endblock %}
+   
+    {% include 'theme/footer.twig' %}
+    
+
+
+{% block JSfiles %}
+    <script>
+        var config = {{ config|json_encode|raw }};
+        
+    </script>
+
+    <!-- GLOBALS LIBS -->
+    <script src="/assets/plugins/jquery/jquery.js"></script>
+    <script src="/assets/plugins/preloader/preloader.js"></script>
+    <script src="/assets/plugins/jquery-slimscroll/slimscroll.js"></script>
+    <script src="/assets/plugins/bootstrap/bootstrap.js"></script>
+    <script src="/assets/plugins/muze-template/app.js"></script>
+    <script src="/assets/plugins/lodash/lodash.js"></script>
+    <script src="/assets/plugins/jquery-fancybox/fancybox.js"></script>
+    <script src="/assets/plugins/moment/moment.js"></script>
+    <script src="/assets/plugins/moment/pt-br.js"></script>
+    <script src="/assets/plugins/datatables/datatables.js"></script>
+    <script src="/assets/plugins/datatables/datatables.bootstrap.js"></script>
+    <script src="/assets/plugins/jquery-confirm/jquery-confirm.js"></script>
+    <script src="/assets/plugins/jquery-validate/validate.js"></script>
+    <script src="/assets/plugins/jquery-validate/methods.js"></script>
+    <script src="/assets/plugins/sweetalert/sweetalert.js"></script>
+    <script src="/assets/plugins/toastr/toastr.js"></script>
+    <script src="/assets/plugins/mask/mask.js"></script>
+    <script src="/assets/plugins/preloader/preloader.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/assets/js/global/utils.js"></script>
+    <script src="/assets/js/global/bestflow.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+
+    <script src="/assets/plugins/emoji-picker/emojipicker.js"></script>
+    <script src="/assets/plugins/multiselect/multiselect.js"></script>
+    <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/assets/plugins/tagify/tagify.js"></script>
+    <script src="/assets/plugins/simplebar/simplebar.js"></script>
+
+
+
+    <script>
+        function logout(){
+            utilsJS.jqueryConfirm('Sair?', 'Deseja sair do sistema?', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/auth/logout',
+                    data: {},
+                    complete: function (response) {
+                        try {
+                            let log = JSON.parse(response.responseText);
+                            if(log.status == true){
+                                location.reload();
+                            }
+                        } catch (e) {
+                            utilsJS.sweetMensagem(false, 'Ocorreu um erro na requisição<br /> Contate o suporte');
+                        }
+                    }
+                });
+            });
+        }
+        
+    </script>
+{% endblock %}
+
+</body>
+</html>

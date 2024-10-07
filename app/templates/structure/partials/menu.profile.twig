@@ -1,0 +1,27 @@
+<div class="dropdown profile-dropdown">
+    <a href="#" class="avatar avatar-sm avatar-circle ms-4 ms-xxl-5" data-bs-toggle="dropdown" aria-expanded="false"
+       id="dropdownMenuButton">
+        <img class="avatar-img" src="/assets/img/profile/avatar.jpg" alt="session['session_user']['NOME']">
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+        <li class="pt-2 px-4">
+            <span class="fs-16 font-weight-bold text-black-600 Montserrat-font me-2">
+                {{ session.session_user.nome }}
+            </span>
+            <hr>
+            <small class="text-gray-600 pb-0 d-block">
+                <b alt="Perfil" title="Perfil">Perfil:</b>{{ session.session_user.perfil }}
+            </small>
+            <br>
+            <small class="text-gray-600 pb-2 d-block"><b>E-mail:</b> {{ session.session_user.email }}</small>
+            <hr>
+        </li>
+        <li>
+            <a class="dropdown-item btn-logout" onclick="logout()" href="#">
+                <i class="fal fa-sign-out-alt"></i>
+                <span class="ms-2">Sair</span>
+            </a>
+        </li>
+    </ul>
+</div>

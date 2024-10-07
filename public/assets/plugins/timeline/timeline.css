@@ -1,0 +1,76 @@
+.card.timeline tbody,
+.card.timeline td,
+.card.timeline tfoot,
+.card.timeline th,
+.card.timeline thead,
+.card.timeline tr {
+    border-width: 1px !important;
+}
+
+.card.timeline .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card.timeline .wrapper {
+    padding: 0;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.card.timeline .sessions {
+    margin-top: 10px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.card.timeline ul {
+    padding: 0;
+    list-style: none;
+}
+
+.card.timeline li {
+    padding-bottom: .5rem;
+    border-left: 1px solid #222222;
+    position: relative;
+    padding-left: 10px;
+    margin-left: 0;
+
+    &:last-child {
+        border: 0px;
+        padding-bottom: 0;
+    }
+
+    &:before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: #31AC47;
+        border: 1px solid #000;
+
+        border-radius: 50%;
+        position: absolute;
+        left: -5px;
+        top: 0px;
+    }
+}
+
+.card.timeline .time {
+    color: #2a2839;
+    font-weight: 500;
+    margin-bottom: 12px;
+    font-size: 12px;
+    margin-left: 10px;
+
+}
+
+.card.timeline p {
+    color: #4f4f4f;
+    font-size: 12px;
+    line-height: 12px;
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+

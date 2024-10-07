@@ -1,0 +1,125 @@
+* {
+    font-family: "Open Sans"
+}
+
+.form-content .form-items {
+    max-width: 700px;
+    text-align: left
+}
+
+.input-group .form-control {
+    height: 3.5rem
+}
+
+.form-body, .form-content {
+    background-color: #f8f9fa
+}
+
+.form-control {
+    border-color: #dee2e6 !important;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff !important;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.input-group-text {
+    background: #fff
+}
+
+.input-group .input-group-text {
+    height: 3.5rem !important
+}
+
+label.error {
+    color: red;
+    font-size: 14px
+}
+
+div.error, input.error, select.error, textarea.error {
+    border: 2px dashed #ff4500 !important
+}
+
+#g-recaptcha div:first-child {
+    height: 80px !important
+}
+
+.input-group {
+    height: 60px
+}
+
+.form-content .btn {
+    margin: 0 !important
+}
+
+.form-check {
+    padding: 0 !important
+}
+
+.form-content input[type=checkbox]:checked + label:after, .form-content input[type=checkbox]:not(:checked) + label:after {
+    font-family: "Font Awesome 5 Pro" !important
+}
+
+div.extension input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border: 3.5px solid #d2d2d2;
+    margin: 0 10px;
+    font-size: 20px;
+    font-width: bold;
+}
+
+.modal-content {
+    border: 0 !important;
+    border-radius: 15px !important;
+    -webkit-box-shadow: 0 0 81px -15px rgba(209, 255, 229, .3);
+    -moz-box-shadow: 0 0 81px -15px rgba(209, 255, 229, .3);
+    box-shadow: 0 0 81px -15px rgba(209, 255, 229, .3);
+    outline: 0;
+}
+
+.modal-content button.close {
+    font-size: 28px;
+    margin: 0 8px 0 0;
+    padding: 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+    border: 0;
+    cursor: pointer
+}
+
+.modal-content .modal-title h1 {
+    font-size: 32px;
+    color: #444;
+    margin: 5px 0 0
+}
+
+.modal-content .modal-title h2 {
+    font-size: 16px;
+    text-align: center;
+    color: #777;
+    margin: 10px 0 25px;
+    font-weight: 400;
+    line-height: 20px
+}
+
+@media (max-width: 780px) {
+    .badge-environment {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}

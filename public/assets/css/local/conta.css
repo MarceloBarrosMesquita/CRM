@@ -1,0 +1,217 @@
+.box-actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-actions p.title {
+    margin: 0;
+    padding: 0;
+}
+
+.box-actions > section {
+    flex: 1;
+    padding: 10px 4px;
+}
+
+/* autocomplete invoice */
+
+#contaForm .autocomplete-suggestion-row {
+    padding: 7px 0;
+    border: 1px solid #e5e5e5
+}
+
+#contaForm .autocomplete-suggestion-row span {
+    font-weight: 400;
+    display: block;
+    font-size: 12px;
+    line-height: 16px
+}
+
+#contaForm .autocomplete-suggestion-row span.title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 1px;
+}
+
+/* forms */
+#contaForm .card.form .row.question {
+    margin-bottom: 10px;
+    border: 1px dashed #d9d9d9;
+    border-radius: 4px;
+    padding: 6px 8px;
+    background: #f5f5f5;
+}
+
+#contaForm .card.form .row.question .question-title {
+    font-size: 13px;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+#contaForm .card.form .row.question ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#contaForm .card.form .row.question ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+
+#contaForm .card.form .row.question input[type="radio"] {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+
+.ck-editor__editable_inline {
+    min-height: 125px;
+}
+
+#contaForm .form-control {
+    height: 1.4rem !important;
+    font-size: .7rem !important;
+}
+
+#contaForm .form-control.form-control-xl {
+    height: 1.8rem !important;
+    font-size: 0.7rem !important;
+}
+
+#contaForm .form-control#default_file {
+    height: 30px !important;
+    font-size: .8rem !important;
+}
+
+#contaForm textarea.form-control.form-control-xl {
+    font-size: .8rem !important;
+    min-height: 70px !important;
+}
+
+#contaForm .form-select.form-select-xl {
+    height: 1.8rem !important;
+    font-size: .7rem !important;
+    padding: 0 11px !important;
+}
+
+
+#contaForm .form-label {
+    margin-bottom: .1rem !important;
+}
+
+
+
+
+.ck.ck-editor.error {
+    border: 2px dashed red;
+}
+
+.multiselect.form-select {
+    height: 30px !important;
+    font-size: 12px !important;
+}
+
+
+.occurrence-queue-bar .btn-cancel {
+    padding: 0px !important;
+    height: 22px;
+}
+
+.step-content .step-tab-panel {
+    min-height: 180px;
+
+}
+
+.step-app > .step-steps > li {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.step-app > .step-steps > li.active {
+    background-color: #2285ff;
+    color: #fff;
+}
+
+.step-app > .step-steps > li.done {
+    background-color: #ddd;
+    color: #333;
+}
+
+.block-search-customer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.block-search-customer > div {
+    flex: 1;
+}
+
+.block-search-customer > div:nth-child(2) {
+    max-width: 35px;
+    align-content: end;
+}
+
+.block-customer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.block-customer > div {
+    flex: 1 0 40%;
+    margin-top: 3px;
+    text-align: left;
+    padding: 0 2px;
+}
+
+.block-customer > div.full {
+    flex: 1 0 100%;
+}
+
+.block-customer p, .details p {
+    font-size: 11px;
+    line-height: 11px;
+    padding: 0;
+    margin: 0;
+}
+
+.block-customer label {
+    font-size: 11px;
+    padding: 0 !important;;
+    margin: 0 !important;
+}
+
+.card-exclusive-color{
+    background: #eef6ff;
+}
+
+
+
+.container-pussy-items {
+    display: block; /* Muda para block para cada item ocupar a linha */
+    margin-bottom: 10px; /* Margem opcional entre os itens */
+}
+
+
+.input-group .input-group-text {
+    padding: 3px 14px !important;
+    background: white;
+}
+
+#filter_date{
+    background: white;
+}
+
+#datatableConta thead {
+    font-size: 12px !important;
+}
+
+#datatableConta td {
+    font-size: 11px !important;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="/assets/img/favicon.png"/>
+
+        <!-- FONTS  -->
+        <link rel="stylesheet" href="/assets/fonts/Poppins/poppins.css">
+
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <title>{{ title }} - {{ config.PROJECT_TITLE }} - {{ config.PROJECT_DESCRIPTION }}</title>
+
+        {% block CSSfiles %}
+            <link rel="stylesheet" href="/assets/plugins/bootstrap/bootstrap.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/fonts/fontawesome-5-pro/css/all.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/plugins/iofrm/iofrm-style.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/plugins/iofrm/iofrm-theme25.css?v={{ config.VERSION_ID }}">
+            <link rel="stylesheet" href="/assets/plugins/scrollbar/scrollbar.css?v={{ config.VERSION_ID }}">
+        {% endblock %}
+    {% endblock %}
+</head>
+
+<div class="form-body">
+    <div class="website-logo">
+        <a href="index.html">
+            <div class="logo">
+                <img class="logo-size" src="/assets/img/logo/logo-white.png" alt="" width="150">
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <div class="img-holder" style="flex-shrink: unset !important;">
+            <div class="bg"></div>
+            <div class="info-holder">
+                <img class="md-size" src="/assets/img/bg/error.png" alt="">
+            </div>
+        </div>
+        <div class="form-holder" style="flex-shrink: unset !important;">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3 class="form-title">{{ (title) ? title : 'ERRO!' }}</h3>
+                    <h4 class="form-title">{{ description }}</h4>
+                    <div class="buttons">
+                        <button class="btn btn-success btn-border d-block" href="#" target="_self"
+                                onclick="window.history.back();">
+                            VOLTAR
+                        </button>
+                        <a class="btn btn-success btn-border d-block" href="/" target="_self">
+                            PÁGINA INICIAL
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block JSfiles %}
+    <script src="/assets/plugins/jquery/jquery.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+    <script src="/assets/plugins/bootstrap/bootstrap.js?v={{ config.VERSION_ID }}" type="text/javascript"></script>
+{% endblock %}
+</body>
+</html>

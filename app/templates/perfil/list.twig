@@ -1,0 +1,73 @@
+{% extends "theme/base.twig" %}
+{% set area = 'cpainel'%}
+{% set type = 'perfil'%}
+{% block CSSfiles %}
+    {{ parent() }}
+    <!--suppress SpellCheckingInspection, SpellCheckingInspection, HtmlUnknownTarget -->
+    <link rel="stylesheet" href="/assets/plugins/multiselect/multiselect.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css?v={{ config.versionId }}">
+    <link rel="stylesheet" href="/assets/plugins/datatables/datatables.responsive.css?v={{ config.versionId }}">
+{% endblock %}
+
+{% block JSfiles %}
+    {{ parent() }}
+    <script>
+        let parameters = {{ parameters|json_encode|raw }};
+    </script>
+
+    <script src="/assets/plugins/datatables/datatables.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.bootstrap.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.buttons.html5.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.jszip.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/datatables/datatables.responsive.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/daterangepicker/daterangepicker.js?v={{ config.versionId }}"></script>
+    <script src="/assets/plugins/multiselect/multiselect.js?v={{ config.versionId }}"></script>
+    <script src="/assets/js/local/perfil.js?v={{ config.versionId }}"></script>
+{% endblock %}
+{% block content %}
+<div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <div class="container-fluid px-0">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="mb-0 title-after-header py-2">Perfis de Acesso >> Listar</h1>
+                    </div>
+                    {% if 'ic_insert_perfil-de-acesso' in permissions %}
+                        <div class="col-auto d-flex align-items-center my-2 my-sm-0">
+                            <a href="/cpainel/perfil/form" class="btn btn-lg btn-warning btn-xs">
+                                <span>Novo Perfil</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row px-md-2 px-2 m-0 w-100 pt-2 mb-2 after-header">
+        <div class="col-12 col-xl-12 col-xxl-12 d-flex align-items-stretch">
+            <div class="card widthfull  shadow-dark-80 border border-gray-50 mb-3 mb-xl-5">
+                <div class="card-body p-3 d-flex flex-column">
+                    <div class="row w-100">
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 filters">
+                            <h5>Perfis Ativos</h5>
+                            <table id="datatablePerfil" class="table nowrap table-no-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Descrição</th>
+                                    <th class="text-center">Criado em</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
